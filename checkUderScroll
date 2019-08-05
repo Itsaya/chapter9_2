@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+main()
+{
+  int i;
+  char string[100], orginal, replace;
+
+  printf("Enter the String : ");
+  fgets(string, sizeof(string), stdin);
+  orginal = '-';
+  replace = '_';
+  for (i=0;i<strlen(string);i++)
+  {
+     if(string[i]==orginal)
+       string[i]=replace;
+  }
+  printf("\nThe new value of string is %s",string);
+}
