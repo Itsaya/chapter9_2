@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+char hashcode(char string[])
+{
+    int i, result;
+
+    for(i=0; i< sizeof(string); i++)
+    {
+        result = string[i]+10;
+        string[i]=result;
+
+    }
+    printf("%s", string);
+     return string;
+}
+
+
+
+main(){
+    char string1[10];
+    printf("Enter your string  ");
+    fgets(string1, sizeof(string1), stdin);
+    const char* hashcode_str = hashcode(string1);
+    printf("your hash code is %s",hashcode_str );
+
+
+}
