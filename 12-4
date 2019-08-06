@@ -1,0 +1,61 @@
+
+#include <stdio.h>
+#include <time.h>
+int sDate(int hour1,int min1,int sec1,int year1,int mon1,int day1)
+{
+        //----------------------
+        struct tm st;
+        st.tm_year = year1-1900;   /* The number of years since 1900   */
+        st.tm_mon = mon1-1;       /* month, range 0 to 11             */
+        st.tm_mday = day1;        /* day of the month, range 1 to 31  */
+        st.tm_hour = hour1;          /* hours, range 0 to 23             */
+        st.tm_min = min1;            /* minutes, range 0 to 59           */
+        st.tm_sec = sec1;           /* seconds,  range 0 to 59          */
+        st.tm_isdst = -1;       // Is DST on? 1 = yes, 0 = no, -1 = unknown  /* daylight saving time             */
+        //----------------------
+        time_t start_t;
+        start_t = mktime(&st);
+        //printf("%d\r\n",start_t);
+}
+int eDate(int hour2,int min2,int sec2,int year2,int mon2,int day2)
+{
+        //----------------------
+        struct tm et;
+        et.tm_year = year2-1900;
+        et.tm_mon = mon2-1;     // Month
+        et.tm_mday = day2;      // Day
+        et.tm_hour = hour2;         // Hour
+        et.tm_min = min2;          // Min
+        et.tm_sec = sec2;          // Sec
+        et.tm_isdst = -1;       // Is DST on? 1 = yes, 0 = no, -1 = unknown
+        //----------------------
+        time_t end_t;
+        end_t = mktime(&et);
+        //printf("%d",end_t);
+}
+int main ()
+{
+        int resultDays,isdst;
+        int year1,mon1,day1,hour1,min1,sec1;
+        int year2,mon2,day2,hour2,min2,sec2;
+
+
+        printf("start Time Date : hour-min-sec Day/Mon/Year\r\n");
+        scanf("%d-%d-%d %d/%d/%d",&hour1,&min1,&sec1,&day1,&mon1,&year1);
+
+        printf("endDate : Day Mon Year \r\n");
+        scanf("%d-%d-%d %d/%d/%d",&hour2,&min2,&sec2,&day2,&mon2,&year2);
+
+        double diff_t;
+
+        time_t start_t;
+        time_t end_t;
+
+        start_t = sDate(hour1,min1,sec1,year1,mon1,day1);
+        end_t = eDate(hour2,min2,sec2,year2,mon2,day2);
+
+        diff_t = difftime(end_t, start_t);
+        resultDays = diff_t / (60);   // sec min hour
+
+        printf("%d",resultDays);
+}
